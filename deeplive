@@ -1,0 +1,12 @@
+#!/bin/zsh
+# Deep-Live-Cam launcher: opens the app on Apple's CoreML and streams Live mode
+# to OBS Virtual Camera. `deeplive photo.jpg` pre-selects the face; extra flags
+# pass through, e.g. `deeplive --live-mirror`. `--head hair|full` adds the experimental hair layer.
+app=${0:A:h}
+cd "$app" || exit 1
+if [[ ! -x venv/bin/python ]]; then
+  echo "Not set up yet: run $app/setup.sh first." >&2
+  exit 1
+fi
+# Hide CoreML's harmless "parts of this model can't use the Neural Engine" notices.
+exec venv/bin/python run_vcam.py "$@" 2> >(/usr/bin/grep -Ev --line-buffered 'E5RT|^\s*$' >&2)
