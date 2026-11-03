@@ -1,0 +1,17 @@
+# Local environment and downloaded models (setup.sh recreates them)
+venv/
+.venv/
+models/
+__pycache__/
+*.py[cod]
+
+# Personal settings and generated output
+switch_states.json
+output.*
+*.mp4
+*.mov
+*.png
+*.jpg
+*.jpeg
+.DS_Store
+.claude/
